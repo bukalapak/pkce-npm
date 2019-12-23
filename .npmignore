@@ -1,0 +1,5 @@
+.cache/
+.nyc_output/
+node_modules/
+src/
+test/
