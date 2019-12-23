@@ -2,6 +2,9 @@
   "name": "pkce",
   "version": "1.0.0-beta1",
   "description": "PKCE code verifier and challenge generator",
+  "author": "Alif Rachmawadi <subosito@bukalapak.com>",
+  "license": "MIT",
+  "repository": "bukalapak/pkce-npm",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
