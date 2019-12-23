@@ -1,6 +1,6 @@
-import * as randomBytes from "randombytes";
-import * as createHash from "create-hash";
-import base64url from "base64url";
+import * as sha256 from "crypto-js/sha256";
+import * as base64 from "crypto-js/enc-base64";
+import * as secureRandom from "secure-random";
 
 const mask =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
@@ -8,7 +8,7 @@ const mask =
 function random(size: number): string {
   let value = "";
 
-  const bytes = randomBytes(size);
+  const bytes = secureRandom(size);
   const scale = 256 / mask.length; // 256 = 0 to 0xFF (randomBytes)
 
   for (let i = 0; i < size; i++) {
@@ -19,9 +19,14 @@ function random(size: number): string {
 }
 
 function hash(str: string): string {
-  return createHash("sha256")
-    .update(str)
-    .digest("base64");
+  return base64.stringify(sha256(str));
+}
+
+function base64url(str: string): string {
+  return str
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
 }
 
 export function createVerifier(length: number = 128): string {
