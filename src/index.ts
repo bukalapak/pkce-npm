@@ -5,7 +5,7 @@ import * as secureRandom from "secure-random";
 const mask =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
 
-function random(size: number): string {
+export function random(size: number): string {
   let value = "";
 
   const bytes = secureRandom(size);
